@@ -10,10 +10,27 @@ class SearchEvents extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
+    protected $updatesQueryString = [
+        ['search' => ['except' => '']],
+        ['page' => ['except' => 1]],
+    ];
+
+    public function mount()
+    {
+        $this->fill(request()->only('search', 'page'));
+    }
+
     public function render()
     {
         return view('livewire.search-events', [
-            'events' => Event::paginate(5)
+            'events' => $this->doSearch()
         ]);
+    }
+
+    private function doSearch()
+    {
+        return Event::searchApproved($this->search)->paginate(10);
     }
 }

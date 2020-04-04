@@ -16,7 +16,6 @@ class EventCard extends Component
     public function mount(Event $event)
     {
         $this->event = $event;
-        Carbon::setLocale(config('app.locale'));
         $date = Carbon::create($event->date);
         $this->day = $date->isoFormat('dddd D');
         $this->month = $date->isoFormat('MMMM');
