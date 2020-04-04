@@ -5,21 +5,25 @@ namespace App\Http\Livewire;
 use App\Event;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Carbon\Carbon;
 
 class SearchEvents extends Component
 {
     use WithPagination;
 
     public $search = '';
+    public $date = '';
+    public $showDateErrorMessage = false;
 
     protected $updatesQueryString = [
-        ['search' => ['except' => '']],
-        ['page' => ['except' => 1]],
+        'search',
+        'date',
+        ['page' => ['except' => 1]]
     ];
 
     public function mount()
     {
-        $this->fill(request()->only('search', 'page'));
+        $this->fill(request()->only('search', 'date', 'page'));
     }
 
     public function render()
@@ -31,6 +35,21 @@ class SearchEvents extends Component
 
     private function doSearch()
     {
-        return Event::searchApproved($this->search)->paginate(10);
+        $this->showDateErrorMessage = false;
+        $searchText = $this->search ? '%'.$this->search.'%' : '';
+
+        if ($this->date) {
+            $dt = Carbon::createFromFormat('Y-m-d', $this->date);
+            $dtNow = Carbon::now();
+
+            if ($dtNow->diffInDays($dt, false) < 0) {
+                $this->showDateErrorMessage = true;
+                return [];
+            }
+
+//            $isValidDate = $dtNow->diffInDays($dt, false) >= 0;
+ //           $searchDate = $isValidDate ? $this->date : null;
+        }
+        return Event::searchApproved($searchText, $this->date)->paginate(3);
     }
 }

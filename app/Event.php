@@ -13,13 +13,18 @@ class Event extends Model
         return $query->where('approved', 1);
     }
 
-    public function scopeSearchApproved($query, $searchText) {
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  string $searchText
+     * @param  string $searchDate
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearchApproved($query, $searchText, $searchDate) {
         $query = $query->where('date', '>=', Carbon::now()->toDateTimeString())
                     ->where('approved', 1)
                     ->orderBy('date', 'ASC');
 
         if ($searchText) {
-            $searchText = '%'.$searchText.'%';
             $query->where(function($query) use ($searchText) {
                 $query->where('title', 'like', $searchText)
                     ->orWhere('description', 'like', $searchText)
@@ -27,7 +32,10 @@ class Event extends Model
             });
         }
 
+        if ($searchDate) {
+            $query->where(DB::raw('date(date)'), '=', $searchDate);
+        }
+
         return $query;
     }
-
 }

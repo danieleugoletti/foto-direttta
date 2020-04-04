@@ -2,5 +2,7 @@
 
 return [
     'search-text' => 'Search...',
-    'no-result' => 'No Event Found'
+    'search-date' => 'Event Date',
+    'no-result' => 'No Event Found',
+    'wrong-date' => 'Wrong Date',
 ];
