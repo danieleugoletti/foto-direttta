@@ -1,6 +1,6 @@
 <div class="">
   <form class="form-event">
-    @if (!$success)
+    @if ($success)
       <div class="alert-success" role="alert">
         <p class="font-bold">{{ __('foto-diretta.operation-complete') }}</p>
         <p>{!! nl2br(__('foto-diretta.operation-complete-note')) !!}</p>

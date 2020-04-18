@@ -16,28 +16,33 @@
     @yield('head')
 </head>
 <body>
-<div class="flex flex-col">
-    {{--
-    @if(Route::has('login'))
-        <div class="absolute top-0 right-0 mt-4 mr-4">
-            @auth
-                <a href="{{ url('/home') }}" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase">{{ __('Home') }}</a>
-                <span class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</span>
-                <a href="{{ route('logout') }}"
-                   class="no-underline hover:underline text-gray-300 text-sm p-3"
-                   onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                    {{ csrf_field() }}
-                </form>
-            @else
-                <a href="{{ route('login') }}" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase pr-6">{{ __('Login') }}</a>
-            @endauth
+    <header>
+        <div class="container">
+            <h3>{{ config('app.name', 'Laravel') }}</h3>
+            <nav class="hidden md:flex text-lg">
+                <a href="#">About</a>
+                {{--
+                @if(Route::has('login'))
+                        @auth
+                            <a href="{{ url('/home') }}">{{ __('Home') }}</a>
+                            <span class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</span>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                                {{ csrf_field() }}
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @endauth
+                @endif
+                --}}
+            </nav>
         </div>
-    @endif
-    --}}
-</div>
-@yield('content')
+    </header>
+    <main>
+        @yield('content')
+    </main>
 <livewire:scripts/>
 </body>
 </html>
