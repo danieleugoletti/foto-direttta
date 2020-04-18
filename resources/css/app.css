@@ -1,4 +1,18 @@
 @tailwind base;
+h1 {
+  @apply text-2xl;
+}
+h2 {
+  @apply text-xl;
+}
+h3 {
+  @apply text-lg;
+}
+a {
+  @apply text-blue-600 underline;
+}
+
+
 @tailwind components;
 @tailwind utilities;
 
@@ -10,19 +24,19 @@ header>div {@apply mx-auto flex flex-col items-center justify-between py-4 px-8 
     @apply flex-row;
   }
 }
-header h3 {@apply text-2xl font-bold uppercase text-blue-900;}
+header h3 a {@apply text-2xl font-bold uppercase text-blue-900 no-underline;}
 header nav {@apply text-lg;}
 @screen md {
   header {
     @apply flex;
   }
 }
-header nav a {@apply text-gray-800 py-3 px-6;}
+header nav a {@apply text-gray-800 py-3 px-6 no-underline;}
 header nav a:hover {@apply text-blue-700;}
 
 main {@apply max-w-screen-lg mx-auto;}
 
-.btn {@apply bg-red-600 text-white text-sm px-4 py-2 border rounded-full font-bold;}
+.btn {@apply bg-red-600 text-white text-sm px-4 py-2 border rounded-full font-bold no-underline;}
 .icon {@apply text-2xl font-light;}
 
 .form-search {@apply text-center;}

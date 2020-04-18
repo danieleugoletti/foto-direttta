@@ -22,3 +22,4 @@ Route::get('/add-event', function () {
 
 // Auth::routes(['register' => false, 'confirm' => false]);
 
+Route::get('/{url}', 'StaticTextController')->where('url', '.*')->name('page');

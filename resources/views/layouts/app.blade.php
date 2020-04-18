@@ -18,9 +18,9 @@
 <body>
     <header>
         <div class="container">
-            <h3>{{ config('app.name', 'Laravel') }}</h3>
+            <h3><a href="/">{{ config('app.name', 'Laravel') }}</a></h3>
             <nav class="hidden md:flex text-lg">
-                <a href="#">About</a>
+                <a href="{{ route('page', ['url' => 'about']) }}">About</a>
                 {{--
                 @if(Route::has('login'))
                         @auth
