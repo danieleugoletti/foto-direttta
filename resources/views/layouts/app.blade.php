@@ -17,6 +17,7 @@
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none">
 <div class="flex flex-col">
+    {{--
     @if(Route::has('login'))
         <div class="absolute top-0 right-0 mt-4 mr-4">
             @auth
@@ -31,10 +32,10 @@
                 </form>
             @else
                 <a href="{{ route('login') }}" class="no-underline hover:underline text-sm font-normal text-teal-800 uppercase pr-6">{{ __('Login') }}</a>
-
             @endauth
         </div>
     @endif
+    --}}
 </div>
 @yield('content')
 <livewire:scripts/>
