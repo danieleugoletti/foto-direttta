@@ -6,6 +6,7 @@ return [
     'no-result' => 'Nessun evento trovato',
     'wrong-date' => 'Data non valida',
     'add-event' => 'Proponi una diretta',
+    'event-type-live' => 'Diretta',
     /*
         Add event form
      */

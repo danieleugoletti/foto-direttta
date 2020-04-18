@@ -1,14 +1,14 @@
-<div class="leading-loose">
-  <form class="max-w-xl m-4 py-5 px-10 bg-white rounded shadow-xl">
-    @if ($success)
-      <div class="bg-green-100 border-l-4 border-green-800 text-orange-dark p-4" role="alert">
+<div class="">
+  <form class="form-event">
+    @if (!$success)
+      <div class="alert-success" role="alert">
         <p class="font-bold">{{ __('foto-diretta.operation-complete') }}</p>
         <p>{!! nl2br(__('foto-diretta.operation-complete-note')) !!}</p>
       </div>
     @endif
 
-    <p class="text-gray-800 text-2xl font-semibold">{{ __('foto-diretta.enter-the-live-data') }}</p>
-    <p class="text-gray-800 text-sm italic">* {{ __('foto-diretta.required-fields') }}</p>
+    <p class="form-event-title">{{ __('foto-diretta.enter-the-live-data') }}</p>
+    <p class="form-event-info">* {{ __('foto-diretta.required-fields') }}</p>
     <x-input name="title" :label="__('foto-diretta.event_title')" :placeholder="__('foto-diretta.event_title')" required="true" />
     <x-input name="url" :label=" __('foto-diretta.url')" :placeholder=" __('foto-diretta.live_web_address')" required="true" />
     <div class="flex items-start">
@@ -28,7 +28,7 @@
     <x-input name="organizer" :label=" __('foto-diretta.organizer')" :placeholder=" __('foto-diretta.name_of_the_organizer')" />
     <x-input name="image_url" :label=" __('foto-diretta.image_url')" :placeholder=" __('foto-diretta.web_address_of_the_image')" />
     <div class="mt-4">
-      <button id="btnSubmit" class="bg-red-600 hover:bg-red-700 text-white text-sm px-4 py-2 border rounded-full font-bold" type="button" onClick="submitEvent()">{{ __('foto-diretta.send') }}</button>
+      <button id="btnSubmit" class="btn" type="button" onClick="submitEvent()">{{ __('foto-diretta.send') }}</button>
       <div class="loader" wire:loading></div>
       <div class="ui-blocker" wire:loading></div>
     </div>

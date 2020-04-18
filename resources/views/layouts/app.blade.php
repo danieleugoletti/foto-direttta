@@ -15,7 +15,7 @@
     <livewire:styles/>
     @yield('head')
 </head>
-<body class="bg-gray-100 h-screen antialiased leading-none">
+<body>
 <div class="flex flex-col">
     {{--
     @if(Route::has('login'))

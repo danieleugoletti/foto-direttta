@@ -1,8 +1,8 @@
 <div>
   <div wire:loading.class="is-loading">
-    <form>
-      <input wire:model.debounce.500ms="search" type="text" placeholder="{{ __('foto-diretta.search-text') }}" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-xl focus:outline-none">
-      <input wire:model="date" type="date" placeholder="{{ __('foto-diretta.search-date') }}" class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-xl focus:outline-none">
+    <form class="form-search">
+      <input wire:model.debounce.500ms="search" type="text" placeholder="{{ __('foto-diretta.search-text') }}">
+      <input wire:model="date" type="date" placeholder="{{ __('foto-diretta.search-date') }}">
       <a href="{{ route('add-event') }}" class="btn"><span class="icon">+</span> {{ __('foto-diretta.add-event') }}</a>
     </form>
   </div>

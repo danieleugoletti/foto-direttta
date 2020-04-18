@@ -6,6 +6,7 @@ return [
     'no-result' => 'No Event Found',
     'wrong-date' => 'Wrong Date',
     'add-event' => 'Suggest a live event',
+    'event-type-live' => 'Live',
     /*
         Add event form
      */
