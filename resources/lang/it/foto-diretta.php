@@ -5,6 +5,7 @@ return [
     'search-date' => 'Data dell\'evento',
     'no-result' => 'Nessun evento trovato',
     'wrong-date' => 'Data non valida',
+    'add-event' => 'Proponi una diretta',
     /*
         Add event form
      */

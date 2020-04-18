@@ -16,5 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+Route::get('/add-event', function () {
+    return view('add');
+})->name('add-event');
+
 // Auth::routes(['register' => false, 'confirm' => false]);
 
