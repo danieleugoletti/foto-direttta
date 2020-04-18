@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 class Event extends Model
 {
+    public $fillable = ['title', 'organizer', 'description', 'url', 'image_url', 'date', 'approved'];
 
     public function scopeApproved($query) {
         return $query->where('approved', 1);
