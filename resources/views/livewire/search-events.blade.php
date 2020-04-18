@@ -17,9 +17,9 @@
     </div>
   @else
     @if($showDateErrorMessage)
-      <p class="mt-20 text-gray-600 text-lg">{{ __('foto-diretta.wrong-date') }}</p>
+      <p class="warning-message">{{ __('foto-diretta.wrong-date') }}</p>
     @else
-      <p class="mt-20 text-gray-600 text-lg">{{ __('foto-diretta.no-result') }}</p>
+      <p class="warning-message">{{ __('foto-diretta.no-result') }}</p>
     @endif
   @endif
 </div>

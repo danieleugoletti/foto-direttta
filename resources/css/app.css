@@ -68,6 +68,9 @@ main {@apply max-w-screen-lg mx-auto;}
     @apply w-56;
   }
 }
+
+.warning-message {@apply mt-20 text-gray-600 text-center text-3xl;}
+
 .form-event {@apply leading-loose max-w-xl m-4 mx-auto py-5 px-10 bg-white rounded shadow-xl;}
 .form-event-title {@apply text-gray-800 text-2xl font-semibold;}
 .form-event-info {@apply text-gray-800 text-sm italic;}
