@@ -20,7 +20,7 @@
             <h3><a href="/">{{ config('app.name', 'Laravel') }}</a></h3>
             <nav class="hidden md:flex text-lg">
 
-                <x-navigation />
+                <x-Navigation />
                 {{--
                 @if(Route::has('login'))
                         @auth
