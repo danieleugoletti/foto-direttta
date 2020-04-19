@@ -19,7 +19,8 @@
         <div class="container">
             <h3><a href="/">{{ config('app.name', 'Laravel') }}</a></h3>
             <nav class="hidden md:flex text-lg">
-                <a href="{{ route('page', ['url' => 'about']) }}">About</a>
+
+                <x-navigation />
                 {{--
                 @if(Route::has('login'))
                         @auth
