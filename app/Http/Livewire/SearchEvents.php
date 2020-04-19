@@ -50,6 +50,6 @@ class SearchEvents extends Component
 //            $isValidDate = $dtNow->diffInDays($dt, false) >= 0;
  //           $searchDate = $isValidDate ? $this->date : null;
         }
-        return Event::searchApproved($searchText, $this->date)->paginate(3);
+        return Event::searchApproved($searchText, $this->date)->paginate(10);
     }
 }
