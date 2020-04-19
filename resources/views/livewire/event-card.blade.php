@@ -5,7 +5,11 @@
       <div class="date-time">{{$time}}</div>
   </div>
   <div class="info">
-    <div class="info-event-type">{{ __('foto-diretta.event-type-live') }}</div>
+    <div class="info-event-type">{{ __('foto-diretta.event-type-live') }}
+      @if($event->organizer)
+        - {{$event->organizer}}
+      @endif
+    </div>
     <a href="{{$event->url}}" target="_blank" class="info-title">{{$event->title}}</a>
     @if($event->description)
       <p class="info-description">{{$event->description}}</p>
