@@ -86,7 +86,7 @@ main {@apply max-w-screen-lg mx-auto;}
     .form-event textarea:focus,
     .form-event select:focus
     {@apply outline-none bg-white border-gray-500;}
-.form-event .alert-success {@apply bg-green-100 border-l-4 border-green-800 p-4;}
+.form-event .alert-success {@apply bg-green-100 border-l-4 border-green-800 my-2 p-4;}
 
 .loader { position: relative; }
 .loader::after {

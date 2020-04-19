@@ -17,7 +17,10 @@ class AddEventForm extends Component
     public $image_url;
     public $success = false;
 
-    public $listeners = ['submit' => 'submit'];
+    public function updated($field)
+    {
+        $this->validateRequest($field);
+    }
 
     public function submit()
     {
@@ -54,23 +57,28 @@ class AddEventForm extends Component
     /**
      * Validate request
      */
-    private function validateRequest()
+    private function validateRequest($field=null)
     {
-        $this->validate([
+        $fieldsDefinition = [
             'title' => ['required', 'min:6'],
             'url' => ['required', 'url'],
             'date' => ['required'],
             'time' => ['required', 'regex:/^\d{1,2}:\d{1,2}( AM| PM)?$/i'],
             'image_url' => ['nullable', 'url'],
-        ],
-        [],
-        [
+        ];
+        $attributes = [
             'title' => $this->localeLabelAndWrapInBold('foto-diretta.event_title'),
             'url' => $this->localeLabelAndWrapInBold('foto-diretta.url'),
             'date' => $this->localeLabelAndWrapInBold('foto-diretta.date'),
             'time' => $this->localeLabelAndWrapInBold('foto-diretta.time'),
             'image_url' => $this->localeLabelAndWrapInBold('foto-diretta.image_url'),
-        ]);
+        ];
+
+        if ($field) {
+            $this->validateOnly($field, $fieldsDefinition, [], $attributes);
+        } else {
+            $this->validate($fieldsDefinition, [], $attributes);
+        }
     }
 
     /**

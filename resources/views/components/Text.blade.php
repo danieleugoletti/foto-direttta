@@ -8,7 +8,7 @@ $cssInput = trim(($required ? 'required ' : '').$cssInput);
 
 <div class="{{ $cssContainer }}">
   <label class="{{ $cssLabel }} " for="{{ $name }}">{{ $label }}</label>
-  <textarea class="{{ $cssInput }} " id="{{ $name }}" name="{{ $name }}" placeholder="{{ $placeholder }}" aria-label="{{ $label }}" {!! $required==='true' ? 'required=""':'' !!} wire:model.lazy="{{ $name }}"
+  <textarea class="{{ $cssInput }} " id="{{ $name }}" name="{{ $name }}" placeholder="{{ $placeholder }}" aria-label="{{ $label }}" {!! $required==='true' ? 'required=""':'' !!} wire:model="{{ $name }}"
 >{{ $value }}</textarea>
   @error($name) <span role="alert">{!! $message !!}</span> @enderror
 </div>

@@ -8,7 +8,7 @@ $cssInput = trim(($required ? 'required ' : '').$cssInput);
 
 <div class="{{ $cssContainer }}">
     <label class="{{ $cssLabel }} " for="{{ $name }}">{{ $label }}</label>
-    <select class="{{ $cssInput }} " id="{{ $name }}" name="{{ $name }}" aria-label="{{ $label }}" {!! $required==='true' ? 'required=""' : '' !!} value="{{ $value }}"  {!! $useModel==='true' ? 'wire:model.lazy="'.$name.'"' : '' !!}>
+    <select class="{{ $cssInput }} " id="{{ $name }}" name="{{ $name }}" aria-label="{{ $label }}" {!! $required==='true' ? 'required=""' : '' !!} value="{{ $value }}"  {!! $useModel==='true' ? 'wire:model="'.$name.'"' : '' !!}>
     {{ $slot }}
     </select>
     @error($name) <span role="alert">{!! $message !!}</span> @enderror
