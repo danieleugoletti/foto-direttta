@@ -5,7 +5,9 @@ The focus of the project is on events relating to photography, but it can be use
 
 The application is developed with [Laravel](https://laravel.com/), [LiveWire](https://laravel-livewire.com/) and [Tailwind CSS](https://tailwindcss.com/).
 
-A lot of attention is paid to privacy, for this reason the event proposals are anonymous, in moderation by the site administrators. It does not store any user data, no statistical tracking is performed.
+A lot of attention is paid to privacy, for this reason the event proposals are anonymous.
+
+It does not store any user data, no statistical tracking is performed.
 
 Foto-Diretta in English means:
 ```
@@ -22,7 +24,16 @@ What if you could check in advance the scheduled ones by your contacts or loved 
 Anyone can stay tuned, search event by title, authors or date.
 
 ## How work
-Foto-Diretta will be always updated: like Wikipedia, anyone can contribute and can propose a live event. No registration is necessary, the eventi will be showed after moderation by site admin.
+
+Foto-Diretta will be always updated: like Wikipedia, anyone can contribute and can propose a live event. No registration is necessary, the events will be showed after moderation by site administrators.
+
+## Where Foto-Diretta is used?
+
+Currently Foto-Diretta is used in these sites:
+- [Foto-Diretta](https://fotodiretta.it): archive of photographic broadcasts for amateurs _(Italian language)_.
+
+You are free to install Foto-Diretta and also use it for other subjects other than photography: please, report your installation via a pull request so that we can update the list.
+
 
 # Requirements
 
@@ -30,13 +41,17 @@ See [Laravel Server Requirements](https://laravel.com/docs/7.x/installation#serv
 
 
 # Installation
+
 * Clone the repository: `git clone https://github.com/danieleugoletti/foto-diretta.git`
 * Install dependencies: `composer install`
 * Set the [Environment Configuration](https://laravel.com/docs/7.x/configuration)
+* Create DB table: `php artisan migrate`
 
 ## Development
+
 * Install dependencies: `npm install`
-* Compile
+* Compile the css: `npm run dev`
+* Seed DB with sample data: `php artisan db:seed`
 
 
 
