@@ -115,7 +115,7 @@ class AddEventForm extends Component
         $this->organizer = '';
         $this->description = '';
         $this->url = '';
-        $this->image = '';
+        $this->image_url = '';
         $this->date = '';
         $this->time = '';
     }
