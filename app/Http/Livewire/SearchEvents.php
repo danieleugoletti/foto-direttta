@@ -46,10 +46,15 @@ class SearchEvents extends Component
                 $this->showDateErrorMessage = true;
                 return [];
             }
-
-//            $isValidDate = $dtNow->diffInDays($dt, false) >= 0;
- //           $searchDate = $isValidDate ? $this->date : null;
         }
+
+        $searchValues = sprintf('%s-%s', $this->search, $this->date);
+        $lastSearchValues = session('last-search', '');
+        if ($searchValues!=$lastSearchValues) {
+            $this->page = 1;
+        }
+        session(['last-search' => $searchValues]);
+
         return Event::searchApproved($searchText, $this->date)->paginate(10);
     }
 }
