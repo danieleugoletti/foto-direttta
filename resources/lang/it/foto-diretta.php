@@ -7,6 +7,8 @@ return [
     'wrong-date' => 'Data non valida',
     'add-event' => 'Proponi una diretta',
     'event-type-live' => 'Diretta',
+    'event-type-facebook' => 'Diretta Facebook',
+    'event-type-instagram' => 'Diretta Instagram',
     /*
         Add event form
      */

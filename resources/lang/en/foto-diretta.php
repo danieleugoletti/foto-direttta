@@ -7,6 +7,8 @@ return [
     'wrong-date' => 'Wrong Date',
     'add-event' => 'Suggest a live event',
     'event-type-live' => 'Live',
+    'event-type-facebook' => 'Live Facebook',
+    'event-type-instagram' => 'Live Instagram',
     /*
         Add event form
      */

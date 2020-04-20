@@ -48,21 +48,22 @@ main {@apply max-w-screen-lg mx-auto;}
 
 
 .card {@apply flex bg-white p-6 mt-6 bg-white rounded shadow-xl;}
-.card .date {@apply flex-shrink-0 bg-blue-600 rounded-lg w-40 py-4 block h-full text-center tracking-wide;}
-.card .date-day {@apply text-white font-bold text-2xl;}
-.card .date-month {@apply text-white font-normal text-xl;}
-.card .date-time {@apply text-white font-normal text-xl;}
+.card .date {@apply flex-shrink-0 bg-blue-600 rounded-lg w-40 pt-2 pb-3 block h-full text-center tracking-wide;}
+.card .date-day {@apply text-white font-bold text-2xl mt-1;}
+.card .date-month {@apply text-white font-normal text-xl mt-1;}
+.card .date-time {@apply text-white font-bold text-2xl mt-1;}
+.card .type {@apply text-white font-light uppercase text-xs mt-2;}
 .card .info {@apply flex-grow mt-4;}
 @screen md {
   .card .info {
-    @apply mt-0 m-6;
+    @apply mt-0 mx-6;
   }
 }
-.card .info-event-type {@apply uppercase tracking-wide text-sm text-indigo-600 font-bold;}
-.card .info-title {@apply block mt-1 text-lg leading-tight font-semibold text-gray-900;}
-.card .info-description {@apply mt-2 text-gray-600;}
+.card .info-organizer {@apply uppercase tracking-wide text-sm text-indigo-600 font-bold;}
+.card .info-title {@apply block mt-1 text-xl leading-tight font-semibold text-gray-900;}
+.card .info-description p {@apply mt-2 text-gray-700 leading-normal;}
 .card .image {@apply flex-shrink-0;}
-.card .image img {@apply rounded-lg;}
+.card .image img {max-height: 180px;}
 @screen md {
   .card .image img {
     @apply w-56;
