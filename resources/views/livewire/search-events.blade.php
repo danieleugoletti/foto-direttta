@@ -1,6 +1,6 @@
 <div>
   <div wire:loading.class="is-loading">
-    <form class="form-search">
+    <form class="form-search" onsubmit="return false;">
       <input wire:model.debounce.500ms="search" type="text" placeholder="{{ __('foto-diretta.search-text') }}">
       <input wire:model="date" type="date" placeholder="{{ __('foto-diretta.search-date') }}">
       <a href="{{ route('add-event') }}" class="btn"><span class="icon">+</span> {{ __('foto-diretta.add-event') }}</a>
