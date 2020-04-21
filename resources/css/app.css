@@ -134,4 +134,10 @@ main {@apply max-w-screen-lg mx-auto;}
     overflow: auto;
 }
 
-
+footer {@apply py-4 text-sm text-center;}
+footer a {@apply font-semibold;}
+footer ul {@apply flex flex-col justify-center list-none;}
+@screen md {
+  footer ul {@apply flex-row;}
+  footer li {@apply mr-2;}
+}

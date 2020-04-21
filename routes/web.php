@@ -20,6 +20,10 @@ Route::get('/add-event', function () {
     return view('add');
 })->name('add-event');
 
+
 // Auth::routes(['register' => false, 'confirm' => false]);
 
+Route::feeds();
+
 Route::get('/{url}', 'StaticTextController')->where('url', '.*')->name('page');
+

@@ -3,19 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="{{ config('app.name', 'Laravel') }}">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <meta property="og:url" content="">
     <meta name="twitter:card" content="summary_large_image">
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    @include('feed::links')
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
     <livewire:styles/>
     @yield('head')
 </head>
@@ -48,6 +45,19 @@
     <main>
         @yield('content')
     </main>
+    <footer>
+        <ul>
+            <li>
+                From an idea by Daniele Ugoletti.
+            </li>
+            <li>
+                Built with <a href="https://github.com/danieleugoletti/foto-direttta" title="GitHub Foto-Diretta Repository">Foto-Diretta</a>.
+            </li>
+            <li>
+                <a href="/feed">RSS Feed</a>
+            </li>
+        </ul>
+    </footer>
 <livewire:scripts/>
 </body>
 </html>
