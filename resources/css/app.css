@@ -36,38 +36,45 @@ header nav a:hover {@apply text-blue-700;}
 
 main {@apply max-w-screen-lg mx-auto;}
 
-.btn {@apply bg-red-600 text-white text-sm px-4 py-2 border rounded-full font-bold no-underline;}
+.btn {@apply bg-red-600 text-white text-sm px-4 py-2 border rounded-full font-bold no-underline whitespace-no-wrap;}
 .icon {@apply text-2xl font-light;}
 
-.form-search {@apply text-center;}
+.form-search {@apply flex flex-col;}
+.form-search .btn {@apply flex-shrink my-1 py-1;}
+.form-search input[type="text"] {@apply flex-grow;}
+.form-search input[type="text"]::placeholder {@apply text-gray-700;}
 .form-search input[type="text"],
-    .form-search input[type="date"] {@apply border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-xl;}
+    .form-search input[type="date"] {@apply border-2 border-gray-400 bg-white h-10 mr-1 my-1 px-5 rounded-full text-xl;}
 .form-search input[type="text"]:focus,
     .form-search input[type="date"]:focus
     {@apply outline-none;}
-
-
-.card {@apply flex bg-white p-6 mt-6 bg-white rounded shadow-xl;}
-.card .date {@apply flex-shrink-0 bg-blue-600 rounded-lg w-40 pt-2 pb-3 block h-full text-center tracking-wide;}
-.card .date-day {@apply text-white font-bold text-2xl mt-1;}
-.card .date-month {@apply text-white font-normal text-xl mt-1;}
-.card .date-time {@apply text-white font-bold text-2xl mt-1;}
-.card .type {@apply text-white font-light uppercase text-xs mt-2;}
-.card .info {@apply flex-grow mt-4;}
 @screen md {
-  .card .info {
-    @apply mt-0 mx-6;
+  .form-search {
+    @apply flex-row;
   }
 }
+
+.card {@apply flex flex-col bg-white p-2 mt-6 bg-white rounded shadow-xl;}
+.card .date {@apply flex-shrink-0 bg-blue-600 rounded-lg pt-2 pb-3 block h-full text-center tracking-wide;}
+.card .date-day {@apply text-white font-bold text-2xl mt-1 inline;}
+.card .date-month {@apply text-white font-normal text-2xl mt-1 hidden;}
+.card .date-time {@apply text-white font-bold text-2xl mt-1 inline;}
+.card .type {@apply text-white font-light uppercase text-xs inline;}
+.card .info {@apply flex-grow mt-3;}
+
 .card .info-organizer {@apply uppercase tracking-wide text-sm text-indigo-600 font-bold;}
 .card .info-title {@apply block mt-1 text-xl leading-tight font-semibold text-gray-900;}
 .card .info-description p {@apply mt-2 text-gray-700 leading-normal;}
-.card .image {@apply flex-shrink-0;}
-.card .image img {max-height: 180px;}
+.card .image {@apply flex-shrink-0 mt-3 mx-auto;}
+.card .image img {max-width: 200px; max-height: 150px;}
 @screen md {
-  .card .image img {
-    @apply w-56;
-  }
+  .card { @apply flex-row p-6;}
+  .card .date {@apply w-40;}
+  .card .date-day {@apply block text-2xl;}
+  .card .date-month {@apply block text-xl;}
+  .card .date-time {@apply block text-2xl mt-2;}
+  .card .info {@apply mx-6 mt-0;}
+  .card .image {@apply mt-0;}
 }
 
 .warning-message {@apply mt-20 text-gray-600 text-center text-3xl;}
@@ -76,6 +83,7 @@ main {@apply max-w-screen-lg mx-auto;}
 .form-event-title {@apply text-gray-800 text-2xl font-semibold;}
 .form-event-info {@apply text-gray-800 text-sm italic;}
 .form-event label {@apply block text-sm text-gray-700;}
+.form-event input[type="text"]::placeholder {@apply text-gray-700;}
 .form-event input[type="text"],
     .form-event input[type="date"]
     {@apply w-full px-5 py-1 text-gray-700 bg-gray-200 border border-gray-200 rounded;}
