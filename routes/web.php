@@ -25,5 +25,6 @@ Route::get('/add-event', function () {
 
 Route::feeds();
 
+Route::get('/calendar/{id}', 'CalendarController')->name('calendar');
 Route::get('/{url}', 'StaticTextController')->where('url', '.*')->name('page');
 

@@ -55,13 +55,14 @@ main {@apply max-w-screen-lg mx-auto;}
 }
 
 .card {@apply flex flex-col bg-white p-2 mt-6 bg-white rounded shadow-xl;}
-.card .date {@apply flex-shrink-0 bg-blue-600 rounded-lg pt-2 pb-3 block h-full text-center tracking-wide;}
-.card .date-day {@apply text-white font-bold text-2xl mt-1 inline;}
-.card .date-month {@apply text-white font-normal text-2xl mt-1 hidden;}
-.card .date-time {@apply text-white font-bold text-2xl mt-1 inline;}
+.card .date-box {@apply flex-shrink-0 block h-full text-center tracking-wide;}
+.card .date-bk {@apply bg-blue-600 rounded-lg pt-2 pb-3;}
+.card .day {@apply text-white font-bold text-2xl mt-1 inline;}
+.card .month {@apply text-white font-normal text-2xl mt-1 hidden;}
+.card .time {@apply text-white font-bold text-2xl mt-1 inline;}
 .card .type {@apply text-white font-light uppercase text-xs inline;}
+.card .calendar {@apply text-blue-600 font-normal uppercase text-xs;}
 .card .info {@apply flex-grow mt-3;}
-
 .card .info-organizer {@apply uppercase tracking-wide text-sm text-indigo-600 font-bold;}
 .card .info-title {@apply block mt-1 text-xl leading-tight font-semibold text-gray-900;}
 .card .info-description p {@apply mt-2 text-gray-700 leading-normal;}
@@ -69,10 +70,11 @@ main {@apply max-w-screen-lg mx-auto;}
 .card .image img {max-width: 200px; max-height: 150px;}
 @screen md {
   .card { @apply flex-row p-6;}
-  .card .date {@apply w-40;}
-  .card .date-day {@apply block text-2xl;}
-  .card .date-month {@apply block text-xl;}
-  .card .date-time {@apply block text-2xl mt-2;}
+  .card .date-box {@apply w-40;}
+  .card .day {@apply block text-2xl;}
+  .card .month {@apply block text-xl;}
+  .card .time {@apply block text-2xl mt-2;}
+  .card .calendar {@apply mt-2;}
   .card .info {@apply mx-6 mt-0;}
   .card .image {@apply mt-0;}
 }

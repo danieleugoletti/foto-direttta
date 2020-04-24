@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Event;
+use App\Helpers\HashidHelper;
 use Livewire\Component;
 use Carbon\Carbon;
 
@@ -13,9 +14,12 @@ class EventCard extends Component
     public $month;
     public $time;
     public $type;
+    public $calendarUrl;
 
     public function mount(Event $event)
     {
+        $hashids = resolve('Helpers\HashidHelper');
+
         $this->event = $event;
         $date = Carbon::create($event->date);
         $this->day = $date->isoFormat('dddd D');
@@ -23,6 +27,7 @@ class EventCard extends Component
         $this->time = $date->isoFormat('HH:mm');
         $event->description = $event->description_html;
         $this->type = $this->guessEventType($event->url);
+        $this->calendarUrl = route('calendar', ['id' => $hashids->encodeId($event->id)]);
     }
 
     public function render()

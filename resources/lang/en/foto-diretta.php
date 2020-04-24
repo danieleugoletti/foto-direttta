@@ -9,6 +9,7 @@ return [
     'event-type-live' => 'Live',
     'event-type-facebook' => 'Live Facebook',
     'event-type-instagram' => 'Live Instagram',
+    'add-to-calendar' => 'Aggiungi al calendario',
     /*
         Add event form
      */

@@ -1,9 +1,12 @@
 <div class="card">
-  <div class="date">
-      <div class="date-month">{{$month}}</div>
-      <div class="date-day">{{$day}}</div>
-      <div class="date-time">{{$time}}</div>
-      <div class="type">{{$type}}</div>
+  <div class="date-box">
+    <div class="date-bk">
+        <div class="month">{{$month}}</div>
+        <div class="day">{{$day}}</div>
+        <div class="time">{{$time}}</div>
+        <div class="type">{{$type}}</div>
+    </div>
+    <a href="{{$calendarUrl}}" class="calendar" title="{{__('foto-diretta.add-to-calendar')}}">{{__('foto-diretta.add-to-calendar')}}</a>
   </div>
   <div class="info">
     @if($event->organizer)

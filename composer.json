@@ -12,9 +12,11 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "hashids/hashids": "^4.0",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^1.0",
+        "spatie/icalendar-generator": "^1.0",
         "spatie/laravel-feed": "^2.6"
     },
     "require-dev": {
