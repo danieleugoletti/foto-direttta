@@ -1,6 +1,14 @@
 <?php
 
 return [
+    'metadata' => [
+        'title' => env('APP_NAME'),
+        'descrition' => '',
+        'url' => env('APP_URL'),
+        'imageSocial' => '',
+        'image' => '',
+        'twitterCard' => 'summary',
+    ],
     'search' => [
         'timeOffset' => '1h'
     ],

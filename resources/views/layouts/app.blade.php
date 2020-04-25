@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="{{ config('app.name', 'Laravel') }}">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:title" content="{{ config('foto-diretta.metadata.title') }}">
+    <meta property="og:description" content="{{ config('foto-diretta.metadata.descrition') }}">
+    <meta property="og:image" content="{{ config('foto-diretta.metadata.imageSocial') }}">
+    <meta property="og:url" content="{{ config('foto-diretta.metadata.url') }}">
+    <meta name="twitter:card" content="{{ config('foto-diretta.metadata.twitterCard') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('feed::links')
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -19,7 +19,17 @@
 <body>
     <header>
         <div class="container">
-            <h3><a href="/">{{ config('app.name', 'Laravel') }}</a></h3>
+            <h3><a href="/">
+                @php
+                    $image = config('foto-diretta.metadata.image', '');
+                    $appName = config('app.name', 'Laravel');
+                @endphp
+                @if ($image)
+                    <img src="{{ $image }}" title="{{ $appName }}" alt="{{ $appName }}">
+                @else
+                    {{ $appName }}
+                @endif
+            </a></h3>
             <nav class="hidden md:flex text-lg">
 
                 <x-Navigation />
