@@ -37,9 +37,11 @@ class CalendarController extends Controller
      */
     private function createCalendar($event)
     {
-       $eventItem = CalendarEvent::create($event->title)
-                    ->description($event->description)
+        $eventItem = CalendarEvent::create($event->title)
+                    ->description(($event->organizer ? $event->organizer.': ' : '' ). $event->description)
                     ->startsAt(Carbon::create($event->date));
+
+        $eventItem->appendProperty(TextPropertyType::create('URL', $event->url));
 
         $alertMinutesBefore = config('foto-diretta.calendar.alertMinutesBefore');
         if (is_integer($alertMinutesBefore) && $alertMinutesBefore>0) {
