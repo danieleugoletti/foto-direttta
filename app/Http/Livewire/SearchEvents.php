@@ -55,6 +55,6 @@ class SearchEvents extends Component
         }
         session(['last-search' => $searchValues]);
 
-        return Event::searchApproved($searchText, $this->date)->paginate(10);
+        return Event::searchApproved($searchText, $this->date, config('foto-diretta.search.timeOffset'))->paginate(10);
     }
 }

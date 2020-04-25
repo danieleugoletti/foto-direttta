@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use League\CommonMark\CommonMarkConverter;
@@ -45,8 +46,13 @@ class Event extends Model implements Feedable
      * @param  string $searchDate
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSearchApproved($query, $searchText='', $searchDate='') {
-        $query = $query->where('date', '>=', Carbon::now()->toDateTimeString())
+    public function scopeSearchApproved($query, $searchText='', $searchDate='', $timeOffset=null) {
+        $now = Carbon::now();
+        if ($timeOffset) {
+            $ci = CarbonInterval::fromString($timeOffset);
+            $now->sub($ci);
+        }
+        $query = $query->where('date', '>=', $now->toDateTimeString())
                     ->where('approved', 1)
                     ->orderBy('date', 'ASC');
 

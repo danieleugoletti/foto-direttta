@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'search' => [
+        'timeOffset' => '1h'
+    ],
     'navigation' => function(){
         return [
             ['label' => 'About', 'url' => route('page', 'about')],
