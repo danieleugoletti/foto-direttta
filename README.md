@@ -1,6 +1,6 @@
 # What is Foto-Diretta?
 
-Foto-Diretta wants to be an archive to memorize the programming of live events (Facebook, Instagram, YouTube or other channels).
+Foto-Diretta wants to be an aggregator of live events (Facebook, Instagram, YouTube or other channels).
 The focus of the project is on events relating to photography, but it can be used for any type of topic.
 
 The application is developed with [Laravel](https://laravel.com/), [LiveWire](https://laravel-livewire.com/) and [Tailwind CSS](https://tailwindcss.com/).
