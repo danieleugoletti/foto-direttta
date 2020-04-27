@@ -53,6 +53,12 @@ See [Laravel Server Requirements](https://laravel.com/docs/7.x/installation#serv
 * Compile the css: `npm run dev`
 * Seed DB with sample data: `php artisan db:seed`
 
+# Roadmap
+
+* Publish event reminder to social channel: facebook, twitter, instagram, telegram group
+* New layout
+* Permalink to event detail
+* Add new type of events: live recording, exhibition, contest, postcast, youtube channel
 
 
 # License
