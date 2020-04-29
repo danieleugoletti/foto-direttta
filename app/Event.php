@@ -2,35 +2,19 @@
 
 namespace App;
 
+use App\Presenters\EventPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Environment;
-use League\CommonMark\Extension\Autolink\AutolinkExtension;
+use Robbo\Presenter\PresentableInterface;
 
-class Event extends Model implements Feedable
+
+class Event extends Model implements Feedable, PresentableInterface
 {
     public $fillable = ['title', 'organizer', 'description', 'url', 'image_url', 'date', 'approved'];
-
-   /**
-    * Get description in html
-    *
-    * @return string
-    */
-    public function getDescriptionHtmlAttribute()
-    {
-        if (!$this->description) return '';
-
-        $environment = Environment::createCommonMarkEnvironment();
-        $environment->addExtension(new AutolinkExtension());
-
-        $converter = new CommonMarkConverter([], $environment);
-        return $converter->convertToHtml($this->description);
-    }
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -92,5 +76,13 @@ class Event extends Model implements Feedable
     public static function getAllFeedItems()
     {
        return self::searchApproved()->get();
+    }
+
+    /**
+     * @return \App\Presenters\EventPresenter
+     */
+    public function getPresenter()
+    {
+        return new EventPresenter($this);
     }
 }

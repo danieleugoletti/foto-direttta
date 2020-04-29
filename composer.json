@@ -16,6 +16,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^1.0",
+        "robclancy/presenter": "^1.4",
         "spatie/icalendar-generator": "^1.0",
         "spatie/laravel-feed": "^2.6"
     },

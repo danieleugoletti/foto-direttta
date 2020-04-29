@@ -2,52 +2,23 @@
 
 namespace App\Http\Livewire;
 
-use App\Event;
-use App\Helpers\HashidHelper;
+use App\Presenters\EventPresenter;
 use Livewire\Component;
-use Carbon\Carbon;
 
 class EventCard extends Component
 {
-    public $event;
-    public $day;
-    public $month;
-    public $time;
-    public $type;
-    public $calendarUrl;
+    private $event;
 
-    public function mount(Event $event)
+    public function mount(EventPresenter $event)
     {
-        $hashids = resolve('Helpers\HashidHelper');
-
         $this->event = $event;
-        $date = Carbon::create($event->date);
-        $this->day = $date->isoFormat('dddd D');
-        $this->month = $date->isoFormat('MMMM');
-        $this->time = $date->isoFormat('HH:mm');
-        $event->description = $event->description_html;
-        $this->type = $this->guessEventType($event->url);
-        $this->calendarUrl = route('calendar', ['id' => $hashids->encodeId($event->id)]);
     }
 
     public function render()
     {
-        return view('livewire.event-card');
+        return view('livewire.event-card', [
+            'event' => $this->event
+        ]);
     }
 
-    /**
-     * @param  string $url
-     * @return string
-     */
-    private function guessEventType($url)
-    {
-        if (strpos($url, '.facebook.com')) {
-            return __('foto-diretta.event-type-facebook');
-        }
-        if (strpos($url, '.instagram.com')) {
-            return __('foto-diretta.event-type-instagram');
-        }
-
-        return __('foto-diretta.event-type-live');
-    }
 }

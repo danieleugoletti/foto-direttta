@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "04ac878e0dfe90dd1c469f11e03f31c9",
+    "content-hash": "89b806f073ff519794a84fecfd6491f0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1999,6 +1999,57 @@
                 "uuid"
             ],
             "time": "2020-03-29T20:13:32+00:00"
+        },
+        {
+            "name": "robclancy/presenter",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robclancy/presenter.git",
+                "reference": "2e0a38970f238bcab407211b494482bfbb0e5aa1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robclancy/presenter/zipball/2e0a38970f238bcab407211b494482bfbb0e5aa1",
+                "reference": "2e0a38970f238bcab407211b494482bfbb0e5aa1",
+                "shasum": ""
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "2.12.*",
+                "illuminate/view": ">=5.4",
+                "mockery/mockery": "^0.9.8",
+                "phpunit/phpunit": "5.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Robbo\\Presenter\\PresenterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Robbo\\Presenter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robbo",
+                    "email": "robbo.clancy@gmail.com"
+                }
+            ],
+            "description": "Decorate your objects using presenters. Primarily to keep presentation logic out of your models.",
+            "keywords": [
+                "decorator",
+                "laravel",
+                "presenter"
+            ],
+            "time": "2018-07-30T20:36:45+00:00"
         },
         {
             "name": "spatie/enum",
