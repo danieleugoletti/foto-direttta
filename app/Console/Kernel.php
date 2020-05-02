@@ -2,6 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Notification\Tasks\BeforeStartTask;
+use App\Console\Notification\Tasks\DailyFullTask;
+use App\Console\Notification\Tasks\DailyShortTask;
+
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,7 +28,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $minutesBeforeStart = config('foto-diretta.notification.beforeStart.minutesBeforeStart');
+        $schedule->call(new BeforeStartTask($minutesBeforeStart))->cron('*/'.$minutesBeforeStart.' * * * *');
+        $schedule->call(new DailyShortTask)->dailyAt(config('foto-diretta.notification.dailyShort.runAt'));
+        $schedule->call(new DailyFullTask)->dailyAt(config('foto-diretta.notification.dailyFull.runAt'));
     }
 
     /**

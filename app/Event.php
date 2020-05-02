@@ -55,6 +55,20 @@ class Event extends Model implements Feedable, PresentableInterface
         return $query;
     }
 
+    public function scopeOnLiveSoon($query, $minutesBeforeStart) {
+        $startTime = Carbon::now();
+        $endTime = Carbon::now();
+        $ci = CarbonInterval::fromString($minutesBeforeStart.'m');
+        $endTime->add($ci);
+
+        $query = $query->where('date', '>=', $startTime->toDateTimeString())
+                    ->where('date', '<=', $endTime->toDateTimeString())
+                    ->where('approved', 1)
+                    ->orderBy('date', 'ASC');
+
+        return $query;
+    }
+
     /**
      * @return Spatie\Feed\FeedItem
      */

@@ -21,4 +21,24 @@ return [
     'calendar' => [
         'alertMinutesBefore' => 10
     ],
+    'notification' => [
+        'gateway' => [
+            'debug' => [
+                'viewSuffix' => '',
+                'class' => App\Console\Notification\Gateways\DebugGateway::class
+            ],
+        ],
+        'dailyFull' => [
+            'gateway' => [],
+            'runAt' => '08:00',
+        ],
+        'dailyShort' => [
+            'gateway' => [],
+            'runAt' => '18:00',
+        ],
+        'beforeStart' => [
+            'gateway' => [],
+            'minutesBeforeStart' => '10',
+        ],
+    ]
 ];
