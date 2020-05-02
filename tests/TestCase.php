@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
      * @param  integer $number
      * @return Event|Collection
      */
-    protected function eventFactory($overrideValues, $number=null)
+    protected function eventFactory($overrideValues=[], $number=null)
     {
         $now = Carbon::now();
         return factory(Event::class, $number)->create(array_merge([

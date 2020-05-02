@@ -15,8 +15,9 @@ class CalendarController extends Controller
     /**
      * @return \Illuminate\Http\Response
      */
-    public function __invoke($id, HashidHelper $hashids)
+    public function __invoke($id)
     {
+        $hashids = resolve('Helpers\HashidHelper');
         $id = $hashids->decodeId($id);
         abort_unless($event = Event::find($id), 404);
 
