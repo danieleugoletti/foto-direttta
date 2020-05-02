@@ -30,7 +30,7 @@ class EventPresenter extends Presenter
         $date = Carbon::create($object->date);
         $this->day = $date->isoFormat('dddd D');
         $this->month = $date->isoFormat('MMMM');
-        $this->time = $date->isoFormat('HH:mm');
+        $this->time = $date->isoFormat('LT');
         $this->descriptionHtml = $this->convertDescriptionToHtml($object->description);
         $this->type = $this->guessEventType($object->url);
 
@@ -109,10 +109,10 @@ class EventPresenter extends Presenter
      */
     private function guessEventType($url)
     {
-        if (strpos($url, '.facebook.com')) {
+        if (strpos($url, 'facebook.com')) {
             return __('foto-diretta.event-type-facebook');
         }
-        if (strpos($url, '.instagram.com')) {
+        if (strpos($url, 'instagram.com')) {
             return __('foto-diretta.event-type-instagram');
         }
 
