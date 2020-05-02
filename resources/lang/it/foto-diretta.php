@@ -11,6 +11,10 @@ return [
     'event-type-instagram' => 'Diretta Instagram',
     'add-to-calendar' => 'Aggiungi al calendario',
     /*
+        Feed
+     */
+    'no-organizer' => 'Organizzatore non specificato',
+    /*
         Add event form
      */
     'title' => 'Titolo',

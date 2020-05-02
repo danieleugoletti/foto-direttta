@@ -11,6 +11,10 @@ return [
     'event-type-instagram' => 'Live Instagram',
     'add-to-calendar' => 'Aggiungi al calendario',
     /*
+        Feed
+     */
+    'no-organizer' => 'No organizer',
+    /*
         Add event form
      */
     'title' => 'Title',

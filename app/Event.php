@@ -60,13 +60,14 @@ class Event extends Model implements Feedable, PresentableInterface
      */
     public function toFeedItem()
     {
+        $presenter = $this->getPresenter();
         return FeedItem::create([
             'id' => sha1($this->id),
             'title' => $this->title,
-            'summary' => $this->description_html,
+            'summary' => $presenter->descriptionHtml,
             'updated' => Carbon::create($this->date),
             'link' => $this->url,
-            'author' => $this->organizer,
+            'author' => $this->organizer ? : __('foto-diretta.no-organizer'),
         ]);
     }
 
