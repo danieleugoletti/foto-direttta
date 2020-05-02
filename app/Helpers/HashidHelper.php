@@ -8,9 +8,12 @@ class HashidHelper
 {
     private $hashids;
 
-    public function __construct()
+    /**
+     * @param string $salt
+     */
+    public function __construct($salt=null)
     {
-        $this->hashids = new Hashids(config('app.key'), 5);
+        $this->hashids = new Hashids($salt, 5);
     }
 
     public function encodeId($id)

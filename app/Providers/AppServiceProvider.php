@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('Helpers\HashidHelper', function () {
-            return new HashidHelper();
+            return new HashidHelper(config('app.key'));
         });
     }
 
