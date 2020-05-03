@@ -1,5 +1,7 @@
 # What is Foto-Diretta?
 
+![run-tests](https://github.com/danieleugoletti/foto-direttta/workflows/run-tests/badge.svg)
+
 Foto-Diretta wants to be an aggregator of live events (Facebook, Instagram, YouTube or other channels).
 The focus of the project is on events relating to photography, but it can be used for any type of topic.
 
