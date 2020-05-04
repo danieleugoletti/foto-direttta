@@ -23,6 +23,13 @@ return [
     ],
     'notification' => [
         'gateway' => [
+            'facebook' => [
+                'app_id' => env('FACEBOOK_APP_ID', ''),
+                'app_secret' => env('FACEBOOK_APP_SECRET', ''),
+                'app_token' => env('FACEBOOK_APP_TOKEN', ''),
+                'page_id' => env('FACEBOOK_PAGE_ID', ''),
+                'class' => App\Console\Notification\Gateways\FacebookGateway::class
+            ],
             'debug' => [
                 'viewSuffix' => '',
                 'class' => App\Console\Notification\Gateways\DebugGateway::class
