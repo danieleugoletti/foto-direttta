@@ -2,9 +2,6 @@
 
 namespace App\Console\Notification\Gateways;
 
-use App\Event;
-use Illuminate\Database\Eloquent\Collection;
-
 class DebugGateway extends AbstractGateway
 {
     /**

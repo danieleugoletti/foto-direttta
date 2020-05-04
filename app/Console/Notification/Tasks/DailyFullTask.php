@@ -14,7 +14,7 @@ class DailyFullTask
         $events = Event::searchApproved('', Carbon::now()->toDateString())->get();
 
         $this->processEvents('dailyFull', function($gatewayInstance, $searchLink) use ($events) {
-            $gatewayInstance->post($gatewayInstance->formatDailyFull($events, $searchLink), $searchLink);
+            $gatewayInstance->post($gatewayInstance->formatDailyFull($events, $searchLink));
         });
     }
 }

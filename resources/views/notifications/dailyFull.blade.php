@@ -7,6 +7,6 @@
 @else
 {{ $event->title }}
 @endif
-<a href="{{ $event->url }}">{{ $event->type }}</a>
+{{ $event->url }}
 
 @endforeach

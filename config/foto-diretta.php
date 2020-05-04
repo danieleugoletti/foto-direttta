@@ -34,7 +34,7 @@ return [
         ],
         'dailyShort' => [
             'gateway' => [],
-            'runAt' => '18:00',
+            'runAt' => '08:00',
         ],
         'beforeStart' => [
             'gateway' => [],

@@ -26,7 +26,7 @@ class BeforeStartTask
 
         $this->processEvents('beforeStart', function($gatewayInstance, $searchLink) use ($events) {
             $events->map(function($event) use ($gatewayInstance, $searchLink) {
-                $gatewayInstance->post($gatewayInstance->formatBeforeStart($event), $searchLink);
+                $gatewayInstance->post($gatewayInstance->formatBeforeStart($event));
             });
         });
     }

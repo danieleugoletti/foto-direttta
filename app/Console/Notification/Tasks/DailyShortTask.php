@@ -14,7 +14,7 @@ class DailyShortTask
         $events = Event::searchApproved('', Carbon::now()->toDateString())->get();
 
         $this->processEvents('dailyShort', function($gatewayInstance, $searchLink) use ($events) {
-            $gatewayInstance->post($gatewayInstance->formatDailyShort($events, $searchLink), $searchLink);
+            $gatewayInstance->post($gatewayInstance->formatDailyShort($events, $searchLink));
         });
     }
 }

@@ -1,4 +1,4 @@
-{{ __('notification-on-live-soon') }}
+{{ __('foto-diretta.notification-on-live-soon') }}
 
 ⏰ {{ __('foto-diretta.notification-time', ['time' => $event->time]) }}
 @if($event->organizer)
@@ -9,6 +9,6 @@
 @if($event->description)
 {{ $event->description }}
 @endif
+{{ $event->url }}
 
-<a href="{{ $event->url }}">{{ $event->type }}</a>
 
