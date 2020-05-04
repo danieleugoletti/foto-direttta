@@ -22,7 +22,7 @@ abstract class AbstractGateway
      * @param  string     $searchLink
      * @return string
      */
-    public function formatDailyFullsss(Collection $events, $searchLink)
+    public function formatDailyFull(Collection $events, $searchLink)
     {
        return $this->renderView('notifications.dailyFull'.$this->viewSuffix, $events, $searchLink);
     }
