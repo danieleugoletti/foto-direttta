@@ -10,21 +10,14 @@ class BeforeStartTask
 {
     use ProcessEventsTrait;
 
-    /**
-     * @var string
-     */
-    private $minutesBeforeStart;
-
-    public function __construct($minutesBeforeStart)
+    public function __invoke(Carbon $now=null)
     {
-        $this->minutesBeforeStart = $minutesBeforeStart;
-    }
-
-    public function __invoke()
-    {
-        $events = Event::onLiveSoon($this->minutesBeforeStart)->get();
+        $now = $this->nowDate($now);
+        $minutesBeforeStart = config('foto-diretta.notification.beforeStart.minutesBeforeStart');
+        $events = Event::onLiveSoon($now, $minutesBeforeStart)->get();
 
         $this->processEvents('beforeStart', function($gatewayInstance, $searchLink) use ($events) {
+            if (!$events->count()) return;
             $events->map(function($event) use ($gatewayInstance, $searchLink) {
                 $gatewayInstance->post($gatewayInstance->formatBeforeStart($event));
             });

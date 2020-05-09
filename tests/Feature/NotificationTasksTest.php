@@ -37,7 +37,18 @@ class NotificationTasksTest extends TestCase
         });
         config(['foto-diretta.notification.gateway.debug.class' => $mocked]);
 
-        $task = new BeforeStartTask($minutesBeforeStart);
+        $task = new BeforeStartTask();
+        $task();
+    }
+
+    /**
+     * @test
+     */
+    public function it_will_send_before_start_notification_with_zero_events()
+    {
+        $this->performFullAndShorTaskZeroEvents('formatBeforeStart');
+
+        $task = new BeforeStartTask();
         $task();
     }
 
@@ -56,11 +67,35 @@ class NotificationTasksTest extends TestCase
     /**
      * @test
      */
+    public function it_will_send_daily_full_notification_with_zero_events()
+    {
+        config(['foto-diretta.notification.dailyFull.gateway' => ['debug']]);
+
+        $this->performFullAndShorTaskZeroEvents('formatDailyFull');
+        $task = new DailyFullTask();
+        $task();
+    }
+
+    /**
+     * @test
+     */
     public function it_will_send_daily_short_notification()
     {
         config(['foto-diretta.notification.dailyShort.gateway' => ['debug']]);
 
         $this->performFullAndShorTask('formatDailyShort');
+        $task = new DailyShortTask();
+        $task();
+    }
+
+    /**
+     * @test
+     */
+    public function it_will_not_send_daily_short_notification_with_zero_events()
+    {
+        config(['foto-diretta.notification.dailyShort.gateway' => ['debug']]);
+
+        $this->performFullAndShorTaskZeroEvents('formatDailyShort');
         $task = new DailyShortTask();
         $task();
     }
@@ -82,6 +117,18 @@ class NotificationTasksTest extends TestCase
                 });
 
             $mock->shouldReceive('post')->once();
+        });
+        config(['foto-diretta.notification.gateway.debug.class' => $mocked]);
+    }
+
+    /**
+     * @param  string $taskName
+     */
+    private function performFullAndShorTaskZeroEvents($taskName)
+    {
+        $mocked = $this->mock(DebugGateway::class, function ($mock) use ($taskName) {
+            $mock->shouldNotReceive($taskName);
+            $mock->shouldNotReceive('post');
         });
         config(['foto-diretta.notification.gateway.debug.class' => $mocked]);
     }

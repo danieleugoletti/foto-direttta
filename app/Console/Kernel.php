@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $minutesBeforeStart = config('foto-diretta.notification.beforeStart.minutesBeforeStart');
-        $schedule->call(new BeforeStartTask($minutesBeforeStart))->cron('*/'.$minutesBeforeStart.' * * * *');
+        $schedule->call(new BeforeStartTask)->cron('*/'.$minutesBeforeStart.' * * * *');
         $schedule->call(new DailyShortTask)->dailyAt(config('foto-diretta.notification.dailyShort.runAt'));
         $schedule->call(new DailyFullTask)->dailyAt(config('foto-diretta.notification.dailyFull.runAt'));
     }

@@ -27,5 +27,10 @@ trait ProcessEventsTrait
             $callback($gatewayInstance, $searchLink);
         });
     }
+
+    private function nowDate(Carbon $now=null)
+    {
+        return $now ?: Carbon::now();
+    }
 }
 
