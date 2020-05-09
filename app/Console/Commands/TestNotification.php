@@ -58,6 +58,7 @@ class TestNotification extends Command
 
         } catch (\Exception $e) {
             $this->error($e->getMessage());
+            return false;
         }
 
         config(['foto-diretta.notification.'.$task.'.gateway' => [$gateway]]);
@@ -75,7 +76,7 @@ class TestNotification extends Command
         $task = $this->argument('task');
         if (!isset($this->availableTask[$task])) {
             $message = sprintf('Wrong task name "%s" use: %s.', $task, implode(',', array_keys($this->availableTask)));
-            throw new Exception($message);
+            throw new \Exception($message);
         }
 
         return $task;
@@ -90,7 +91,7 @@ class TestNotification extends Command
         $gateways = array_keys(config('foto-diretta.notification.gateway'));
         if (!in_array($gateway, $gateways)) {
             $message = sprintf('Wrong gateway name "%s" use: %s.', $gateway, implode(',', $gateways));
-            throw new Exception($message);
+            throw new \Exception($message);
         }
 
         return $gateway;
@@ -105,7 +106,7 @@ class TestNotification extends Command
             return Carbon::createFromFormat('Y-m-d h:i', $this->argument('date'));
         } catch (\Exception $e) {
             $message = sprintf('Wrong date %s formatm use: Y-m-d h:i', $this->argument('date'));
-            throw new Exception($message);
+            throw new \Exception($message);
         }
     }
 }
