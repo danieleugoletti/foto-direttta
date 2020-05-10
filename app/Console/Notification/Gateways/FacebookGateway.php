@@ -42,7 +42,9 @@ class FacebookGateway extends AbstractGateway
      */
     public function transform(Event $event, $taskName) : EventPresenter
     {
-        return $event->getPresenter();
+        $eventPresenter = $event->getPresenter();
+        $eventPresenter->organizer = $this->replaceMentions('facebook', $eventPresenter->organizer);
+        return $eventPresenter;
     }
 
     /**

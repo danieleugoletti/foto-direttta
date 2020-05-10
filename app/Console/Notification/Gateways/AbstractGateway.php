@@ -71,6 +71,17 @@ abstract class AbstractGateway
     abstract public function transform(Event $event, $taskName) : EventPresenter;
 
     /**
+     * @param  string $gatewayName
+     * @param  string $value
+     * @return string
+     */
+    protected function replaceMentions($gatewayName, $value)
+    {
+        $mentions = config('foto-diretta.notification.gateway.'.$gatewayName.'.mentions');
+        return str_replace(array_keys($mentions), array_values($mentions), $value);
+    }
+
+    /**
      * @param  string     $taskName
      * @param  Collection $events
      * @param  string     $searchLink

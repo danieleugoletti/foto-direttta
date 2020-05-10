@@ -28,6 +28,7 @@ return [
                 'app_secret' => env('FACEBOOK_APP_SECRET', ''),
                 'app_token' => env('FACEBOOK_APP_TOKEN', ''),
                 'page_id' => env('FACEBOOK_PAGE_ID', ''),
+                'mentions' => [],
                 'class' => App\Console\Notification\Gateways\FacebookGateway::class
             ],
             'twitter' => [
@@ -35,6 +36,7 @@ return [
                 'consumer_secret' => env('TWITTER_CONSUMER_SECRET', ''),
                 'access_token' => env('TWITTER_ACCESS_TOKEN', ''),
                 'access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET', ''),
+                'mentions' => [],
                 'class' => App\Console\Notification\Gateways\TwitterGateway::class
             ],
             'debug' => [

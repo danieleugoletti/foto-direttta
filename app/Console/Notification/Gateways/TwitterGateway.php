@@ -41,6 +41,7 @@ class TwitterGateway extends AbstractGateway
     {
         $eventPresenter = $event->getPresenter();
         $eventPresenter->description = '';
+        $eventPresenter->organizer = $this->replaceMentions('twitter', $eventPresenter->organizer);
         return $eventPresenter;
     }
 }

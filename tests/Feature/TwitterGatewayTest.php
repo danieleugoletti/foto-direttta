@@ -22,4 +22,19 @@ class TwitterGatewayTest extends TestCase
         $this->assertEquals('', $presenter->description);
     }
 
+    /**
+     * @test
+     */
+    public function it_metion_organizer()
+    {
+        config([
+            'foto-diretta.notification.gateway.twitter.mentions' => [
+                'Foto Diretta' => '@fotodiretta'
+            ]]);
+
+        $event = $this->eventFactory(['organizer' => 'Foto Diretta']);
+        $gatewway = new TwitterGateway('');
+        $presenter = $gatewway->transform($event, NotificationTasks::DAILY_SHORT);
+        $this->assertEquals('@fotodiretta', $presenter->organizer);
+    }
 }
