@@ -103,9 +103,9 @@ class TestNotification extends Command
     private function getDate()
     {
         try {
-            return Carbon::createFromFormat('Y-m-d h:i', $this->argument('date'));
+            return Carbon::createFromFormat('Y-m-d H:i', $this->argument('date'));
         } catch (\Exception $e) {
-            $message = sprintf('Wrong date %s formatm use: Y-m-d h:i', $this->argument('date'));
+            $message = sprintf('Wrong date %s formatm use: Y-m-d H:i', $this->argument('date'));
             throw new \Exception($message);
         }
     }
