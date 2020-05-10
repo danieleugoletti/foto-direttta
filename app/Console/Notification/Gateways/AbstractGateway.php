@@ -53,7 +53,7 @@ abstract class AbstractGateway
     public function formatBeforeStart(Event $event)
     {
         return (string)view('notifications.'.NotificationTasks::BEFORE_START.$this->viewSuffix, [
-            'event' => $this->tranform($event, NotificationTasks::BEFORE_START)
+            'event' => $this->transform($event, NotificationTasks::BEFORE_START)
         ]);
     }
 
