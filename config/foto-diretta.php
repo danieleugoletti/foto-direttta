@@ -39,6 +39,11 @@ return [
                 'mentions' => [],
                 'class' => App\Console\Notification\Gateways\TwitterGateway::class
             ],
+            'telegram' => [
+                'chat_id' => env('TELEGRAM_CHAT_ID', ''),
+                'api_token' => env('TELEGRAM_API_TOKEN', ''),
+                'class' => App\Console\Notification\Gateways\TelegramGateway::class
+            ],
             'debug' => [
                 'viewSuffix' => '',
                 'class' => App\Console\Notification\Gateways\DebugGateway::class
