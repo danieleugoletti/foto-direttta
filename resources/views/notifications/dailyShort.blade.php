@@ -1,3 +1,2 @@
-{{ trans_choice('foto-diretta.notification-today', $events->count(), ['count' => $events->count()]) }}
+{!! trans_choice('foto-diretta.notification-today', $events->count(), ['count' => $events->count(), 'link' => $searchLink, 'site' => config('app.name')]) !!}
 
-{!! __('foto-diretta.notification-link', ['link' => $searchLink, 'site' => config('app.name')]) !!}
