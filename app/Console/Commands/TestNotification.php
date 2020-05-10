@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Console\Notification\Tasks\BeforeStartTask;
 use App\Console\Notification\Tasks\DailyFullTask;
 use App\Console\Notification\Tasks\DailyShortTask;
+use App\Console\Notification\NotificationTasks;
 
 use Illuminate\Console\Command;
 use Carbon\Carbon;
@@ -15,9 +16,9 @@ class TestNotification extends Command
      * @var array
      */
     private $availableTask = [
-            'beforeStart' => BeforeStartTask::class,
-            'dailyFull' => DailyFullTask::class,
-            'dailyShort' => DailyShortTask::class
+            NotificationTasks::BEFORE_START => BeforeStartTask::class,
+            NotificationTasks::DAILY_FULL => DailyFullTask::class,
+            NotificationTasks::DAILY_SHORT => DailyShortTask::class
         ];
 
     /**

@@ -2,6 +2,9 @@
 
 namespace App\Console\Notification\Gateways;
 
+use App\Event;
+use App\Console\Notification\NotificationTasks;
+use App\Presenters\EventPresenter;
 use Facebook\Facebook;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
@@ -32,6 +35,14 @@ class FacebookGateway extends AbstractGateway
             report($e);
             exit;
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function transform(Event $event, $taskName) : EventPresenter
+    {
+        return $event->getPresenter();
     }
 
     /**

@@ -2,6 +2,9 @@
 
 namespace App\Console\Notification\Gateways;
 
+use App\Event;
+use App\Console\Notification\NotificationTasks;
+use App\Presenters\EventPresenter;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Abraham\TwitterOAuth\TwitterOAuthException;
 
@@ -29,5 +32,15 @@ class TwitterGateway extends AbstractGateway
             report($e);
             exit;
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function transform(Event $event, $taskName) : EventPresenter
+    {
+        $eventPresenter = $event->getPresenter();
+        $eventPresenter->description = '';
+        return $eventPresenter;
     }
 }

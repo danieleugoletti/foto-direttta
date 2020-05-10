@@ -54,7 +54,7 @@ class NotificationTasksTest extends TestCase
      */
     public function it_will_send_before_start_notification_with_zero_events()
     {
-        $this->performFullAndShorTaskZeroEvents('formatBeforeStart');
+        $this->performFullAndShortTaskZeroEvents('formatBeforeStart');
 
         $task = new BeforeStartTask();
         $task();
@@ -65,7 +65,7 @@ class NotificationTasksTest extends TestCase
      */
     public function it_will_send_daily_full_notification()
     {
-        $this->performFullAndShorTask('formatDailyFull');
+        $this->performFullAndShortTask('formatDailyFull');
 
         $task = new DailyFullTask();
         $task();
@@ -77,7 +77,7 @@ class NotificationTasksTest extends TestCase
     public function it_will_send_daily_full_notification_with_date()
     {
         $date = Carbon::now()->sub('10d');
-        $this->performFullAndShorTask('formatDailyFull', $date);
+        $this->performFullAndShortTask('formatDailyFull', $date);
 
         $task = new DailyFullTask();
         $task($date);
@@ -88,7 +88,7 @@ class NotificationTasksTest extends TestCase
      */
     public function it_will_send_daily_full_notification_with_zero_events()
     {
-        $this->performFullAndShorTaskZeroEvents('formatDailyFull');
+        $this->performFullAndShortTaskZeroEvents('formatDailyFull');
 
         $task = new DailyFullTask();
         $task();
@@ -99,7 +99,7 @@ class NotificationTasksTest extends TestCase
      */
     public function it_will_send_daily_short_notification()
     {
-        $this->performFullAndShorTask('formatDailyShort');
+        $this->performFullAndShortTask('formatDailyShort');
 
         $task = new DailyShortTask();
         $task();
@@ -112,7 +112,7 @@ class NotificationTasksTest extends TestCase
     public function it_will_send_daily_short_notification_with_date()
     {
         $date = Carbon::now()->sub('10d');
-        $this->performFullAndShorTask('formatDailyShort', $date);
+        $this->performFullAndShortTask('formatDailyShort', $date);
 
         $task = new DailyShortTask();
         $task($date);
@@ -123,7 +123,7 @@ class NotificationTasksTest extends TestCase
      */
     public function it_will_not_send_daily_short_notification_with_zero_events()
     {
-        $this->performFullAndShorTaskZeroEvents('formatDailyShort');
+        $this->performFullAndShortTaskZeroEvents('formatDailyShort');
 
         $task = new DailyShortTask();
         $task();
@@ -156,7 +156,7 @@ class NotificationTasksTest extends TestCase
      * @param  string $taskName
      * @param  Carbon $now
      */
-    private function performFullAndShorTask($taskName, $now=null)
+    private function performFullAndShortTask($taskName, $now=null)
     {
         $now = $now ?: Carbon::now()->add('1h');
         $numberEvents = 4;
@@ -178,7 +178,7 @@ class NotificationTasksTest extends TestCase
     /**
      * @param  string $taskName
      */
-    private function performFullAndShorTaskZeroEvents($taskName)
+    private function performFullAndShortTaskZeroEvents($taskName)
     {
         $mocked = $this->mock(DebugGateway::class, function ($mock) use ($taskName) {
             $mock->shouldNotReceive($taskName);

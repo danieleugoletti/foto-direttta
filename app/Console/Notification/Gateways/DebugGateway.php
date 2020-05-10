@@ -2,6 +2,10 @@
 
 namespace App\Console\Notification\Gateways;
 
+use App\Event;
+use App\Console\Notification\NotificationTasks;
+use App\Presenters\EventPresenter;
+
 class DebugGateway extends AbstractGateway
 {
     /**
@@ -10,5 +14,13 @@ class DebugGateway extends AbstractGateway
     public function post($message)
     {
         echo $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function transform(Event $event, $taskName) : EventPresenter
+    {
+        return $event->getPresenter();
     }
 }

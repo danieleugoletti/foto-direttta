@@ -3,7 +3,10 @@
 namespace App\Console\Notification\Gateways;
 
 use App\Event;
-use Illuminate\Database\Eloquent\Collection;
+use App\Console\Notification\NotificationTasks;
+use App\Presenters\EventPresenter;
+
+use Illuminate\Support\Collection;
 
 abstract class AbstractGateway
 {
@@ -24,7 +27,10 @@ abstract class AbstractGateway
      */
     public function formatDailyFull(Collection $events, $searchLink)
     {
-       return $this->renderView('notifications.dailyFull'.$this->viewSuffix, $events, $searchLink);
+        $trasformedEvents = $events->map(function($event){
+            return $this->tranform($event, NotificationTasks::DAILY_FULL);
+        });
+        return $this->renderView(NotificationTasks::DAILY_FULL, $trasformedEvents, $searchLink);
     }
 
     /**
@@ -34,7 +40,10 @@ abstract class AbstractGateway
      */
     public function formatDailyShort(Collection $events, $searchLink)
     {
-       return $this->renderView('notifications.dailyShort'.$this->viewSuffix, $events, $searchLink);
+        $trasformedEvents = $events->map(function($event){
+            return $this->tranform($event, NotificationTasks::DAILY_SHORT);
+        });
+        return $this->renderView(NotificationTasks::DAILY_SHORT, $trasformedEvents, $searchLink);
     }
 
     /**
@@ -43,8 +52,8 @@ abstract class AbstractGateway
      */
     public function formatBeforeStart(Event $event)
     {
-        return (string)view('notifications.beforeStart'.$this->viewSuffix, [
-            'event' => $event
+        return (string)view('notifications.'.NotificationTasks::BEFORE_START.$this->viewSuffix, [
+            'event' => $this->tranform($event, NotificationTasks::BEFORE_START)
         ]);
     }
 
@@ -55,14 +64,21 @@ abstract class AbstractGateway
     abstract public function post($message);
 
     /**
-     * @param  string     $viewName
+     * @param  Event  $event
+     * @param  string $taskName
+     * @return EventPresenter
+     */
+    abstract public function transform(Event $event, $taskName) : EventPresenter;
+
+    /**
+     * @param  string     $taskName
      * @param  Collection $events
      * @param  string     $searchLink
      * @return string
      */
-    private function renderView($viewName, Collection $events, $searchLink)
+    private function renderView($taskName, Collection $events, $searchLink)
     {
-        return (string)view($viewName, [
+        return (string)view('notifications.'.$taskName.$this->viewSuffix, [
             'events' => $events,
             'searchLink' => $searchLink
         ]);
