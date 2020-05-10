@@ -56,6 +56,38 @@ class Event extends Model implements Feedable, PresentableInterface
     }
 
     /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  Carbon $now
+     * @param  integer $minutesBeforeStart
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOnLiveSoon($query, Carbon $now, $minutesBeforeStart) {
+        $endTime = $now->copy();
+        $ci = CarbonInterval::fromString($minutesBeforeStart.'m');
+        $endTime->add($ci);
+
+        $query = $query->where('date', '>=', $now->toDateTimeString())
+                    ->where('date', '<=', $endTime->toDateTimeString())
+                    ->where('approved', 1)
+                    ->orderBy('date', 'ASC');
+
+        return $query;
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param  string $searchDate
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeDaily($query, $searchDate='') {
+        $query = $query->where(DB::raw('date(date)'), '=', $searchDate)
+                    ->where('approved', 1)
+                    ->orderBy('date', 'ASC');
+
+        return $query;
+    }
+
+    /**
      * @return Spatie\Feed\FeedItem
      */
     public function toFeedItem()
