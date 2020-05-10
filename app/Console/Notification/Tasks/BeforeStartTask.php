@@ -10,6 +10,9 @@ class BeforeStartTask
 {
     use ProcessEventsTrait;
 
+    /**
+     * @param  Carbon|null $now
+     */
     public function __invoke(Carbon $now=null)
     {
         $now = $this->nowDate($now);

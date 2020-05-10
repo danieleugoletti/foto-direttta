@@ -16,29 +16,37 @@ class NotificationTasksTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config(['foto-diretta.notification.beforeStart.gateway' => ['debug']]);
+        config(['foto-diretta.notification.dailyFull.gateway' => ['debug']]);
+        config(['foto-diretta.notification.dailyShort.gateway' => ['debug']]);
+    }
+
+
     /**
      * @test
      */
     public function it_will_send_before_start_notification()
     {
-        $numberEvents = 4;
-        $minutesBeforeStart = 10;
-        $minutesBeforeStartString = intval($minutesBeforeStart/2).'m';
-
-        config(['foto-diretta.notification.beforeStart.minutesBeforeStart' => $minutesBeforeStart]);
-        config(['foto-diretta.notification.beforeStart.gateway' => ['debug']]);
-
-        $this->eventFactory(['date' => Carbon::now()->add($minutesBeforeStartString)], $numberEvents);
-        $this->eventFactory(['date' => Carbon::now()->add('1h')]);
-
-        $mocked = $this->mock(DebugGateway::class, function ($mock) use ($numberEvents) {
-            $mock->shouldReceive('formatBeforeStart')->times($numberEvents);
-            $mock->shouldReceive('post')->times($numberEvents);
-        });
-        config(['foto-diretta.notification.gateway.debug.class' => $mocked]);
+        $this->performBeforeStartTask();
 
         $task = new BeforeStartTask();
         $task();
+    }
+
+    /**
+     * @test
+     */
+    public function it_will_send_before_start_notification_with_date()
+    {
+        $date = Carbon::now()->sub('10d');
+        $this->performBeforeStartTask($date);
+
+        $task = new BeforeStartTask();
+        $task($date);
     }
 
     /**
@@ -57,9 +65,8 @@ class NotificationTasksTest extends TestCase
      */
     public function it_will_send_daily_full_notification()
     {
-        config(['foto-diretta.notification.dailyFull.gateway' => ['debug']]);
-
         $this->performFullAndShorTask('formatDailyFull');
+
         $task = new DailyFullTask();
         $task();
     }
@@ -67,11 +74,22 @@ class NotificationTasksTest extends TestCase
     /**
      * @test
      */
+    public function it_will_send_daily_full_notification_with_date()
+    {
+        $date = Carbon::now()->sub('10d');
+        $this->performFullAndShorTask('formatDailyFull', $date);
+
+        $task = new DailyFullTask();
+        $task($date);
+    }
+
+    /**
+     * @test
+     */
     public function it_will_send_daily_full_notification_with_zero_events()
     {
-        config(['foto-diretta.notification.dailyFull.gateway' => ['debug']]);
-
         $this->performFullAndShorTaskZeroEvents('formatDailyFull');
+
         $task = new DailyFullTask();
         $task();
     }
@@ -81,11 +99,23 @@ class NotificationTasksTest extends TestCase
      */
     public function it_will_send_daily_short_notification()
     {
-        config(['foto-diretta.notification.dailyShort.gateway' => ['debug']]);
-
         $this->performFullAndShorTask('formatDailyShort');
+
         $task = new DailyShortTask();
         $task();
+    }
+
+
+    /**
+     * @test
+     */
+    public function it_will_send_daily_short_notification_with_date()
+    {
+        $date = Carbon::now()->sub('10d');
+        $this->performFullAndShorTask('formatDailyShort', $date);
+
+        $task = new DailyShortTask();
+        $task($date);
     }
 
     /**
@@ -93,21 +123,45 @@ class NotificationTasksTest extends TestCase
      */
     public function it_will_not_send_daily_short_notification_with_zero_events()
     {
-        config(['foto-diretta.notification.dailyShort.gateway' => ['debug']]);
-
         $this->performFullAndShorTaskZeroEvents('formatDailyShort');
+
         $task = new DailyShortTask();
         $task();
     }
 
     /**
-     * @param  string $taskName
+     * @param  Carbon $now
      */
-    private function performFullAndShorTask($taskName)
+    private function performBeforeStartTask($now=null)
     {
+        $now = $now ?: Carbon::now();
         $numberEvents = 4;
-        $this->eventFactory(['date' => Carbon::now()->add('1h')], $numberEvents);
-        $this->eventFactory(['date' => Carbon::now()->add('1d')]);
+        $minutesBeforeStart = 10;
+        $minutesBeforeStartString = intval($minutesBeforeStart/2).'m';
+
+        config(['foto-diretta.notification.beforeStart.minutesBeforeStart' => $minutesBeforeStart]);
+
+        $this->eventFactory(['date' => $now->clone()->add($minutesBeforeStartString)], $numberEvents);
+        $this->eventFactory(['date' => $now->clone()->add('1h')]);
+
+        $mocked = $this->mock(DebugGateway::class, function ($mock) use ($numberEvents) {
+            $mock->shouldReceive('formatBeforeStart')->times($numberEvents);
+            $mock->shouldReceive('post')->times($numberEvents);
+        });
+        config(['foto-diretta.notification.gateway.debug.class' => $mocked]);
+    }
+
+
+    /**
+     * @param  string $taskName
+     * @param  Carbon $now
+     */
+    private function performFullAndShorTask($taskName, $now=null)
+    {
+        $now = $now ?: Carbon::now()->add('1h');
+        $numberEvents = 4;
+        $this->eventFactory(['date' => $now], $numberEvents);
+        $this->eventFactory(['date' => $now->clone()->add('3d')]);
 
         $mocked = $this->mock(DebugGateway::class, function ($mock) use ($taskName, $numberEvents) {
             $mock->shouldReceive($taskName)
