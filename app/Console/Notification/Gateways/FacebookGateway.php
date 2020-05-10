@@ -3,6 +3,8 @@
 namespace App\Console\Notification\Gateways;
 
 use Facebook\Facebook;
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
 
 class FacebookGateway extends AbstractGateway
 {
@@ -21,11 +23,11 @@ class FacebookGateway extends AbstractGateway
                 ['message' => $message],
                 $token
             );
-        } catch(FacebookExceptionsFacebookResponseException $e) {
+        } catch(FacebookResponseException $e) {
             logger('Graph returned an error: ' . $e->getMessage());
             report($e);
             exit;
-        } catch(FacebookExceptionsFacebookSDKException $e) {
+        } catch(FacebookSDKException $e) {
             logger('Facebook SDK returned an error: ' . $e->getMessage());
             report($e);
             exit;
