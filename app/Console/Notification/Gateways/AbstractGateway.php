@@ -28,7 +28,7 @@ abstract class AbstractGateway
     public function formatDailyFull(Collection $events, $searchLink)
     {
         $trasformedEvents = $events->map(function($event){
-            return $this->tranform($event, NotificationTasks::DAILY_FULL);
+            return $this->transform($event, NotificationTasks::DAILY_FULL);
         });
         return $this->renderView(NotificationTasks::DAILY_FULL, $trasformedEvents, $searchLink);
     }
@@ -41,7 +41,7 @@ abstract class AbstractGateway
     public function formatDailyShort(Collection $events, $searchLink)
     {
         $trasformedEvents = $events->map(function($event){
-            return $this->tranform($event, NotificationTasks::DAILY_SHORT);
+            return $this->transform($event, NotificationTasks::DAILY_SHORT);
         });
         return $this->renderView(NotificationTasks::DAILY_SHORT, $trasformedEvents, $searchLink);
     }
