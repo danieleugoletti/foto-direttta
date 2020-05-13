@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.300s>
   <form class="form-event" wire:submit.prevent="submit">
     <p class="form-event-title">{{ __('foto-diretta.enter-the-live-data') }}</p>
     <p class="form-event-info">* {{ __('foto-diretta.required-fields') }}</p>

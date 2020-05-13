@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.300s>
   <div wire:loading.class="is-loading">
     <form class="form-search" onsubmit="return false;">
       <input wire:model.debounce.500ms="search" type="text" placeholder="{{ __('foto-diretta.search-text') }}">
