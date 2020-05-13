@@ -20,5 +20,7 @@ mix.postCss('resources/css/app.css', 'public/css')
 if (mix.inProduction()) {
   mix
    .version()
-   .purgeCss();
+   .purgeCss({
+        whitelistPatterns: [/h1/, /h2/, /h3/]
+   });
 }

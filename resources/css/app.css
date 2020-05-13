@@ -1,18 +1,4 @@
 @tailwind base;
-h1 {
-  @apply text-2xl;
-}
-h2 {
-  @apply text-xl;
-}
-h3 {
-  @apply text-lg;
-}
-a {
-  @apply text-blue-600 underline;
-}
-
-
 @tailwind components;
 @tailwind utilities;
 
@@ -36,7 +22,7 @@ header nav a:hover {@apply text-blue-700;}
 
 main {@apply max-w-screen-lg mx-auto;}
 
-.btn {@apply bg-red-600 text-white text-sm px-4 py-2 border rounded-full font-bold no-underline whitespace-no-wrap;}
+.btn {@apply border-0 bg-red-600 text-white text-sm px-4 py-2 rounded-full font-bold no-underline whitespace-no-wrap;}
 .icon {@apply text-2xl font-light;}
 
 .form-search {@apply flex flex-col;}
@@ -65,7 +51,7 @@ main {@apply max-w-screen-lg mx-auto;}
 .card .info {@apply flex-grow mt-3;}
 .card .info-organizer {@apply uppercase tracking-wide text-sm text-indigo-600 font-bold;}
 .card .info-title {@apply block mt-1 text-xl leading-tight font-semibold text-gray-900;}
-.card .info-description p {@apply mt-2 text-gray-700 leading-normal;}
+.card .info-description p {@apply mt-2 text-gray-700 leading-tight;}
 .card .image {@apply flex-shrink-0 mt-3 mx-auto;}
 .card .image img {max-width: 200px; max-height: 150px;}
 @screen md {
@@ -77,6 +63,7 @@ main {@apply max-w-screen-lg mx-auto;}
   .card .calendar {@apply mt-2;}
   .card .info {@apply mx-6 mt-0;}
   .card .image {@apply mt-0;}
+  .card .info-description p {@apply leading-normal;}
 }
 
 .warning-message {@apply mt-20 text-gray-600 text-center text-3xl;}
@@ -98,6 +85,13 @@ main {@apply max-w-screen-lg mx-auto;}
     .form-event select:focus
     {@apply outline-none bg-white border-gray-500;}
 .form-event .alert-success {@apply bg-green-100 border-l-4 border-green-800 my-2 p-4;}
+
+.static-page p {@apply mb-2 leading-relaxed;}
+.static-page li {@apply list-disc ml-8;}
+.static-page h1 {@apply text-5xl font-bold mt-10 mb-3;}
+.static-page h2 {@apply text-2xl font-bold mt-10 mb-3;}
+.static-page h3 {@apply text-xl font-bold mt-10 mb-3;}
+.static-page a {@apply text-blue-600 underline;}
 
 .loader { position: relative; }
 .loader::after {
@@ -136,7 +130,7 @@ main {@apply max-w-screen-lg mx-auto;}
     overflow: auto;
 }
 
-footer {@apply py-4 text-sm text-center;}
+footer {@apply mt-10 py-4 text-sm text-center;}
 footer a {@apply font-semibold;}
 footer ul {@apply flex flex-col justify-center list-none;}
 @screen md {
