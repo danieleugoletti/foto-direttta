@@ -23,3 +23,16 @@
     @endif
   @endif
 </div>
+<script>
+    document.addEventListener("livewire:load", (event) => {
+      window.livewire.hook('afterDomUpdate', () => {
+        let element = document.querySelector('.form-search');
+        if (!element) {
+          return;
+        }
+        if (window.scrollY>element.offsetTop) {
+          element.scrollIntoView() - 20;
+        }
+      });
+    });
+  </script>
