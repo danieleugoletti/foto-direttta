@@ -36,25 +36,61 @@ class SearchEvents extends Component
     private function doSearch()
     {
         $this->showDateErrorMessage = false;
-        $searchText = $this->search ? '%'.$this->search.'%' : '';
 
-        if ($this->date) {
-            $dt = Carbon::createFromFormat('Y-m-d', $this->date);
+        $search = $this->validateSearch($this->search);
+        $searchText = $search ? '%'.$search.'%' : '';
+
+        $date = $this->validateDate($this->date);
+        if (is_null($date)) {
+            $this->showDateErrorMessage = true;
+            return [];
+        }
+
+        return Event::searchApproved($searchText, $date, config('foto-diretta.search.timeOffset'))->paginate(10);
+    }
+
+    /**
+     * @param  string $value
+     * @return string
+     */
+    private function validateSearch($value)
+    {
+        return trim($value);
+    }
+
+    /**
+     * @param  string $value
+     * @return string|null
+     */
+    private function validateDate($value)
+    {
+        if (!$value) {
+            return '';
+        }
+
+        try {
+            $dt = Carbon::createFromFormat('Y-m-d', $value);
             $dtNow = Carbon::now();
 
             if ($dtNow->diffInDays($dt, false) < 0) {
-                $this->showDateErrorMessage = true;
-                return [];
+                return null;
             }
+        } catch (\Exception $e) {
+            return null;
         }
 
+        return $value;
+    }
+
+    private function checkIfResetPagination()
+    {
         $searchValues = sprintf('%s-%s', $this->search, $this->date);
         $lastSearchValues = session('last-search', '');
         if ($searchValues!=$lastSearchValues) {
             $this->page = 1;
         }
         session(['last-search' => $searchValues]);
-
-        return Event::searchApproved($searchText, $this->date, config('foto-diretta.search.timeOffset'))->paginate(10);
     }
+
+
 }
