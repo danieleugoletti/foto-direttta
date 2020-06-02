@@ -47,6 +47,7 @@ See [Laravel Server Requirements](https://laravel.com/docs/7.x/installation#serv
 * Clone the repository: `git clone https://github.com/danieleugoletti/foto-diretta.git`
 * Install dependencies: `composer install`
 * Set the [Environment Configuration](https://laravel.com/docs/7.x/configuration)
+* [If the application key is not set yet] Set your application key: `php artisan key:generate`
 * Create DB table: `php artisan migrate`
 
 ## Development
@@ -54,6 +55,10 @@ See [Laravel Server Requirements](https://laravel.com/docs/7.x/installation#serv
 * Install dependencies: `npm install`
 * Compile the css: `npm run dev`
 * Seed DB with sample data: `php artisan db:seed`
+
+Notes about development infrastructure:
+- to have **mysql** and **phpMyAdmin** development instances you may use the `docker-compose.development.yml` file (it expects an `.env` file on the root level)
+- to launch the PHP's built-in **development server**, you may use the `serve` Artisan command: `php artisan serve`
 
 # Roadmap
 
