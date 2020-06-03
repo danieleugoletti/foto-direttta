@@ -1,0 +1,26 @@
+version : '3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: foto_diretta_mysql
+    environment:
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    ports:
+      - ${DB_PORT}:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: foto_diretta_pma
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: ${DB_PORT}
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - ${PHPMYADMIN_PORT}:80
