@@ -40,7 +40,7 @@ return [
     /*
         Notification
      */
-    'notification-today' => '{1}:count event today, visit :site <:link> for full events list.|[2,*]:count events today, visit :site <:link> for full events list.',
+    'notification-today' => '{1}:count event today, visit :link for full events list.|[2,*]:count events today, visit :site <:link> for full events list.',
     'notification-time' => 'Time :time',
     'notification-on-live-soon' => 'On live soon.',
 ];
