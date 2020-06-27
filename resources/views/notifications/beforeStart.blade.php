@@ -2,7 +2,7 @@
 
 ⏰ {{ __('foto-diretta.notification-time', ['time' => $event->time]) }}
 @if($event->organizer)
-{{ $event->organizer }}: {!! $event->title !!}
+{!! $event->organizer !!}: {!! $event->title !!}
 @else
 {!! $event->title !!}
 @endif
