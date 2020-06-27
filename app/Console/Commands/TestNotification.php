@@ -26,7 +26,7 @@ class TestNotification extends Command
      *
      * @var string
      */
-    protected $signature = 'notification:test {task : Task name (beforeStart|dailyFull|dailyShort)} {gateway} {date}';
+    protected $signature = 'notification:test {task : Task name (beforeStart|dailyFull|dailyShort)} {gateway?} {date?}';
 
     /**
      * The console command description.
@@ -103,10 +103,15 @@ class TestNotification extends Command
      */
     private function getDate()
     {
+        $date = $this->argument('date');
+        if (!$date) {
+            throw new \Exception('Missing date, use: Y-m-d H:i');
+        }
+
         try {
             return Carbon::createFromFormat('Y-m-d H:i', $this->argument('date'));
         } catch (\Exception $e) {
-            $message = sprintf('Wrong date %s formatm use: Y-m-d H:i', $this->argument('date'));
+            $message = sprintf('Wrong date %s format use: Y-m-d H:i', $this->argument('date'));
             throw new \Exception($message);
         }
     }
