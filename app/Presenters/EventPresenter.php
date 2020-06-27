@@ -17,6 +17,7 @@ class EventPresenter extends Presenter
     private $type;
     private $calendarUrl;
     private $descriptionHtml;
+    private $isToday;
 
     /**
      * Create the Presenter and store the object we are presenting.
@@ -36,6 +37,8 @@ class EventPresenter extends Presenter
 
         $hashids = resolve('Helpers\HashidHelper');
         $this->calendarUrl = route('calendar', ['id' => $hashids->encodeId($object->id)]);
+
+        $this->isToday = Carbon::now()->diffInDays($date) === 0;
     }
 
     /**
@@ -84,6 +87,14 @@ class EventPresenter extends Presenter
     public function presentCalendarUrl()
     {
         return $this->calendarUrl;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function presentIsToday()
+    {
+        return $this->isToday;
     }
 
    /**

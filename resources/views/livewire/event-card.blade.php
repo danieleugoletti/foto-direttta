@@ -1,8 +1,12 @@
 <div class="card">
   <div class="date-box">
     <div class="date-bk">
-        <div class="month">{{$event->month}}</div>
-        <div class="day">{{$event->day}}</div>
+        @if($event->isToday)
+          <div class="day today">{{__('foto-diretta.today')}}</div>
+        @else
+          <div class="month">{{$event->month}}</div>
+          <div class="day">{{$event->day}}</div>
+        @endif
         <div class="time">{{$event->time}}</div>
         <div class="type">{{$event->type}}</div>
     </div>

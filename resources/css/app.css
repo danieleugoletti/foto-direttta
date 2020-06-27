@@ -44,6 +44,7 @@ main {@apply max-w-screen-lg mx-auto;}
 .card .date-box {@apply flex-shrink-0 block h-full text-center tracking-wide;}
 .card .date-bk {@apply bg-blue-600 rounded-lg pt-2 pb-3;}
 .card .day {@apply text-white font-bold text-2xl mt-1 inline;}
+.card .today {color: #ffc000;}
 .card .month {@apply text-white font-normal text-2xl mt-1 hidden;}
 .card .time {@apply text-white font-bold text-2xl mt-1 inline;}
 .card .type {@apply text-white font-light uppercase text-xs inline;}

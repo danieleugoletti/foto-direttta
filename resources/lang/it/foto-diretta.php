@@ -10,6 +10,7 @@ return [
     'event-type-facebook' => 'Diretta Facebook',
     'event-type-instagram' => 'Diretta Instagram',
     'add-to-calendar' => 'Aggiungi al calendario',
+    'today' => 'oggi',
     /*
         Feed
      */
