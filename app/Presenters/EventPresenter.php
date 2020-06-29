@@ -38,7 +38,7 @@ class EventPresenter extends Presenter
         $hashids = resolve('Helpers\HashidHelper');
         $this->calendarUrl = route('calendar', ['id' => $hashids->encodeId($object->id)]);
 
-        $this->isToday = Carbon::now()->diffInDays($date) === 0;
+        $this->isToday = Carbon::now()->toDateString() === $date->toDateString();
     }
 
     /**
